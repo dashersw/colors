@@ -1,0 +1,76 @@
+:root {
+  --turq: #24d7e2;
+  --blue: #2e7cf6;
+  --red: #df3b57;
+  --purple: #915491;
+  --grass: #63d0b2;
+  --rose: #ef988e;
+  --sun: #f9dc5c;
+  --gray: #000000;
+}
+
+.turq {
+  --color: var(--turq);
+}
+
+.blue {
+  --color: var(--blue);
+}
+
+.red {
+  --color: var(--red);
+}
+
+.purple {
+  --color: var(--purple);
+}
+
+.grass {
+  --color: var(--grass);
+}
+
+.rose {
+  --color: var(--rose);
+}
+
+.sun {
+  --color: var(--sun);
+}
+
+.gray {
+  --color: var(--gray);
+}
+
+@function mixWhite($weight) {
+  @return color-mix(in srgb, var(--color), white ((1 - $weight) * 100%));
+}
+
+@function mixBlack($weight) {
+  @return color-mix(in srgb, var(--color), black (1 - $weight) * 100%);
+}
+
+@function mixWhiteRelativeColor($weight) {
+  @return color(
+    from var(--color) srgb calc(r * $weight + (1 - $weight)) calc(g * $weight + (1 - $weight))
+      calc(b * $weight + (1 - $weight))
+  );
+}
+
+@function mixBlackRelativeColor($weight) {
+  @return color(from var(--color) srgb calc(r * $weight) calc(g * $weight) calc(b * $weight));
+}
+
+@function mixWhiteRelativeColorSafari($weight) {
+  @return color(
+    from var(--color) srgb calc(r * #{$weight} + #{100% - $weight * 100}) calc(g * #{$weight} + #{100% - $weight * 100})
+      calc(b * #{$weight} + #{100% - $weight * 100})
+  );
+}
+
+@function mixWhiteOKLCH($weight) {
+  @return color(from var(--color) oklch calc(l + (1 - #{$weight}) * (1 - l)) calc(c * #{$weight}) h);
+}
+
+@function mixBlackOKLCH($weight) {
+  @return color(from var(--color) oklch calc(l * $weight) calc(c * $weight) h);
+}

@@ -1,0 +1,63 @@
+.turq {
+  --color-red: 36;
+  --color-green: 215;
+  --color-blue: 226;
+}
+
+.blue {
+  --color-red: 46;
+  --color-green: 124;
+  --color-blue: 246;
+}
+
+.red {
+  --color-red: 223;
+  --color-green: 59;
+  --color-blue: 87;
+}
+
+.purple {
+  --color-red: 145;
+  --color-green: 84;
+  --color-blue: 145;
+}
+
+.grass {
+  --color-red: 99;
+  --color-green: 208;
+  --color-blue: 178;
+}
+
+.rose {
+  --color-red: 239;
+  --color-green: 152;
+  --color-blue: 142;
+}
+
+.sun {
+  --color-red: 249;
+  --color-green: 220;
+  --color-blue: 92;
+}
+
+.gray {
+  --color-red: 0;
+  --color-green: 0;
+  --color-blue: 0;
+}
+
+@function mixWhite($weight) {
+  @return rgb(
+    calc((var(--color-red) * $weight) + (255 * (1 - $weight))),
+    calc((var(--color-green) * $weight) + (255 * (1 - $weight))),
+    calc((var(--color-blue) * $weight) + (255 * (1 - $weight)))
+  );
+}
+
+@function mixBlack($weight) {
+  @return rgb(
+    calc((var(--color-red) * $weight) + (0 * (1 - $weight))),
+    calc((var(--color-green) * $weight) + (0 * (1 - $weight))),
+    calc((var(--color-blue) * $weight) + (0 * (1 - $weight)))
+  );
+}

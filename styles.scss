@@ -1,0 +1,41 @@
+@import 'layout';
+@import 'colors';
+
+.tinted {
+  h1 {
+    color: mixBlack(0.8);
+  }
+
+  p {
+    color: mixBlack(0.3);
+  }
+
+  &.card {
+    background-color: mixWhite(0.1);
+    border-color: mixBlack(0.8);
+    box-shadow: 0 0.5rem 3rem -1rem mixBlack(0.5);
+  }
+
+  & input {
+    border-color: mixBlack(0.95);
+    background-color: mixWhite(0.08);
+
+    &:focus-visible {
+      outline-color: mixBlack(0.8);
+    }
+  }
+
+  & input[type='submit'] {
+    cursor: pointer;
+    background-color: mixWhite(0.8);
+    color: mixBlack(0.2);
+
+    &:hover {
+      background-color: mixWhite(0.9);
+    }
+
+    &:active {
+      background-color: mixWhite(0.7);
+    }
+  }
+}

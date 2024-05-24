@@ -1,0 +1,50 @@
+@import 'layout';
+@import 'colors';
+
+$blue: #2e7cf6;
+$red: #df3b57;
+$purple: #915491;
+$grass: #63d0b2;
+$rose: #ef988e;
+$turq: #24d7e2;
+$sun: #f9dc5c;
+$gray: #000000;
+
+$colors: $blue, $red, $purple, $grass, $rose, $turq, $sun, $gray;
+$color-names: 'Blue', 'Red', 'Purple', 'Grass', 'Rose', 'Turq', 'Sun', 'Gray';
+
+$mix-rates: 0, 10, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95, 100, 95, 90, 80, 70, 60, 50, 40, 35, 30, 25, 20, 15, 10;
+
+$reduced-mix-rates: 10 30 50 100 60;
+
+@mixin render-palette($mix-rates, $mid-cell) {
+  width: length($mix-rates) * 100px;
+
+  @for $i from 1 through length($colors) {
+    .row:nth-child(#{$i}) {
+      @for $j from 1 through length($mix-rates) {
+        .cell:nth-child(#{$j}) {
+          $mix-rate: nth($mix-rates, $j);
+          $colorName: to-lower-case(nth($color-names, $i));
+
+          --color: var(--#{$colorName});
+
+          background-color: if($j < $mid-cell, mixWhite($mix-rate / 100), mixBlack($mix-rate / 100));
+
+          &::after {
+            content: if($j == 14, $colorName, '#{$mix-rate}');
+            color: if($j < $mid-cell, black, white);
+          }
+        }
+      }
+    }
+  }
+}
+
+.palette {
+  @include render-palette($mix-rates, 14);
+}
+
+.reduced-palette {
+  @include render-palette($reduced-mix-rates, 4);
+}
